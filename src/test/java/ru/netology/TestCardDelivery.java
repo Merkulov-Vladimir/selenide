@@ -4,12 +4,12 @@ import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -18,6 +18,10 @@ public class TestCardDelivery {
 
     @BeforeEach
     void openWebsite() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         open("http://localhost:9999");
     }
 
@@ -33,7 +37,7 @@ public class TestCardDelivery {
         $(".checkbox").click();
         //$(".grid-row button").click();
         $(withText("Забронировать")).click();
-       // $(".notification__title").shouldHave(ownText("Успешно!"), Duration.ofSeconds(15));
+        // $(".notification__title").shouldHave(ownText("Успешно!"), Duration.ofSeconds(15));
         $(".notification__content").shouldHave(Condition.text("Встреча успешно забронирована на \r\n" +
                 appointmentDate), Duration.ofSeconds(15));
     }
