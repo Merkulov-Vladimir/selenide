@@ -1,12 +1,11 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.BeforeAll;
+import com.codeborne.selenide.Configuration;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,17 +17,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestCardDelivery {
     LocalDate currentDate = LocalDate.now();
 
-    @BeforeAll
-    static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
-    }
-
     @BeforeEach
     void openWebsite() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
         open("http://localhost:9999");
     }
 
