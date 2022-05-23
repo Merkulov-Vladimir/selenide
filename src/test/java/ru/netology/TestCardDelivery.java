@@ -1,6 +1,8 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -15,6 +17,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestCardDelivery {
     LocalDate currentDate = LocalDate.now();
+
+    @BeforeAll
+    static void setUpAll() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeEach
     void openWebsite() {
